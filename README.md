@@ -1,25 +1,3 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bot WhatsApp com Baileys</title>
-<style>
-body { font-family: Arial, sans-serif; background:#f4f4f9; color:#333; margin:20px; }
-h1, h2, h3 { color:#0078D7; }
-pre { background:#272822; color:#f8f8f2; padding:15px; border-radius:8px; overflow-x:auto; }
-code { font-family: monospace; }
-.badge { display:inline-block; padding:5px 10px; border-radius:5px; color:white; text-decoration:none; margin:5px 0; }
-.whatsapp { background:#25D366; }
-.copy { background:#0078D7; }
-section { margin-bottom:40px; }
-img { max-width:100%; border-radius:8px; }
-table { border-collapse: collapse; width:100%; margin-top:10px; }
-th, td { border:1px solid #ddd; padding:8px; text-align:left; }
-th { background:#0078D7; color:white; }
-</style>
-</head>
-<body>
 
 <h1>🤖 Bot WhatsApp com Baileys</h1>
 <p>Exemplo de bot do WhatsApp usando <a href="https://www.npmjs.com/package/@whiskeysockets/baileys" target="_blank">@whiskeysockets/baileys</a> em Node.js. Tudo em um único arquivo, pronto para copiar e rodar direto.</p>
