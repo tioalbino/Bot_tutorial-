@@ -1,48 +1,155 @@
-🤖 Bot WhatsApp com Baileys
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bot WhatsApp com Baileys</title>
+<style>
+body { font-family: Arial, sans-serif; background:#f4f4f9; color:#333; margin:20px; }
+h1, h2, h3 { color:#0078D7; }
+pre { background:#272822; color:#f8f8f2; padding:15px; border-radius:8px; overflow-x:auto; }
+code { font-family: monospace; }
+.badge { display:inline-block; padding:5px 10px; border-radius:5px; color:white; text-decoration:none; margin:5px 0; }
+.whatsapp { background:#25D366; }
+.copy { background:#0078D7; }
+section { margin-bottom:40px; }
+img { max-width:100%; border-radius:8px; }
+table { border-collapse: collapse; width:100%; margin-top:10px; }
+th, td { border:1px solid #ddd; padding:8px; text-align:left; }
+th { background:#0078D7; color:white; }
+</style>
+</head>
+<body>
 
-Este projeto mostra como criar uma conexão completa com WhatsApp usando @whiskeysockets/baileys em Node.js.
+<h1>🤖 Bot WhatsApp com Baileys</h1>
+<p>Exemplo de bot do WhatsApp usando <a href="https://www.npmjs.com/package/@whiskeysockets/baileys" target="_blank">@whiskeysockets/baileys</a> em Node.js. Tudo em um único arquivo, pronto para copiar e rodar direto.</p>
 
-Perfeito para estudos, tutoriais ou testes no Termux, Linux ou Windows.
+<section>
+<h2>📲 Contato do Desenvolvedor</h2>
+<a href="https://wa.me/5527998158753" class="badge whatsapp">💬 WhatsApp</a>
+<a href="#" class="badge copy">📋 Copiar Número</a>
+<p>Número: +55 27 99815-8753</p>
+</section>
 
+<section>
+<h2>🖼️ Demonstração</h2>
+<img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" alt="QR Code Animado">
+<p>Exemplo de QR Code para escanear pelo WhatsApp</p>
+<img src="https://via.placeholder.com/400x200.png?text=Bot+WhatsApp" alt="Exemplo do Bot">
+</section>
 
----
+<section>
+<h2>📦 Instalação</h2>
+<pre><code>npm install @whiskeysockets/baileys qrcode-terminal</code></pre>
+<p>Tudo roda direto, sem pastas extras.</p>
+</section>
 
-📲 Contato do Desenvolvedor
+<section>
+<h2>🔧 Código Completo (Tudo Junto)</h2>
+<pre><code>import makeWASocket, { useMultiFileAuthState } from '@whiskeysockets/baileys';
+import qrcode from 'qrcode-terminal';
 
+async function connectToWhatsApp() {
+  const { state, saveCreds } = await useMultiFileAuthState('.auth_info');
+  const sock = makeWASocket({ auth: state });
 
- (clique com botão direito → copiar)
+  sock.ev.on('connection.update', ({ qr, connection }) => {
+    if (qr) qrcode.generate(qr, { small: true });
+    if (connection === 'open') console.log('✅ Bot conectado ao WhatsApp!');
+    if (connection === 'close') console.log('❌ Conexão encerrada, tentando reconectar...');
+  });
 
-Número: +55 27 99815-8753
+  sock.ev.on('creds.update', saveCreds);
 
+  sock.ev.on('messages.upsert', ({ messages, type }) => {
+    if (type === 'notify') {
+      messages.forEach(msg => {
+        if (!msg.key.fromMe) {
+          console.log(`📩 Mensagem recebida de ${msg.key.remoteJid}: ${msg.message?.conversation}`);
+        }
+      });
+    }
+  });
+}
 
----
+connectToWhatsApp();</code></pre>
+</section>
 
-🖼️ Demonstração
+<section>
+<h2>📝 Explicação do Código</h2>
+<table>
+<tr><th>Parte</th><th>Função</th></tr>
+<tr><td>useMultiFileAuthState('.auth_info')</td><td>Cria sessão do WhatsApp dentro do próprio arquivo, sem pastas extras</td></tr>
+<tr><td>makeWASocket({ auth: state })</td><td>Inicializa o bot com WhatsApp Web</td></tr>
+<tr><td>sock.ev.on('connection.update', …)</td><td>Monitora QR Code, conexão aberta/fechada</td></tr>
+<tr><td>qrcode.generate(qr, { small: true })</td><td>Mostra QR Code no terminal</td></tr>
+<tr><td>sock.ev.on('creds.update', saveCreds)</td><td>Salva credenciais automaticamente</td></tr>
+<tr><td>sock.ev.on('messages.upsert', …)</td><td>Recebe mensagens do WhatsApp</td></tr>
+</table>
+</section>
 
-
-Exemplo de QR Code para escanear pelo WhatsApp
-
-
-
-
----
-
-📦 Instalação
-
-No terminal, instale as dependências:
-
-npm install @whiskeysockets/baileys qrcode-terminal
-
-
----
-
-▶️ Rodar o Bot Diretamente
-
-Execute direto sem criar arquivos:
-
-node -e "
+<section>
+<h2>▶️ Rodar o Bot</h2>
+<pre><code>node -e "
 import makeWASocket, { useMultiFileAuthState } from '@whiskeysockets/baileys';
 import qrcode from 'qrcode-terminal';
+
+(async () => {
+  const { state, saveCreds } = await useMultiFileAuthState('.auth_info');
+  const sock = makeWASocket({ auth: state });
+
+  sock.ev.on('connection.update', ({ qr, connection }) => {
+    if (qr) qrcode.generate(qr, { small: true });
+    if (connection === 'open') console.log('✅ Bot conectado ao WhatsApp!');
+    if (connection === 'close') console.log('❌ Conexão encerrada, tentando reconectar...');
+  });
+
+  sock.ev.on('creds.update', saveCreds);
+
+  sock.ev.on('messages.upsert', ({ messages, type }) => {
+    if (type === 'notify') {
+      messages.forEach(msg => {
+        if (!msg.key.fromMe) {
+          console.log(`📩 Mensagem recebida de ${msg.key.remoteJid}: ${msg.message?.conversation}`);
+        }
+      });
+    }
+  });
+})();
+"</code></pre>
+<p>Escaneie o QR Code no terminal → Bot conectado ✅</p>
+</section>
+
+<section>
+<h2>📦 Dependências</h2>
+<ul>
+<li>@whiskeysockets/baileys → conexão com WhatsApp Web</li>
+<li>qrcode-terminal → exibe QR Code no terminal</li>
+</ul>
+<pre><code>npm install @whiskeysockets/baileys qrcode-terminal</code></pre>
+</section>
+
+<section>
+<h2>⚠️ Avisos</h2>
+<ul>
+<li>Use apenas para estudos/testes</li>
+<li>Nunca compartilhe o QR Code ou credenciais</li>
+<li>Respeite os Termos de Serviço do WhatsApp</li>
+</ul>
+</section>
+
+<section>
+<h2>💡 Próximos Passos</h2>
+<ul>
+<li>Adicionar respostas automáticas</li>
+<li>Criar comandos customizados</li>
+<li>Salvar logs e estatísticas de mensagens</li>
+<li>Implementar envio de mídia e imagens</li>
+</ul>
+</section>
+
+</body>
+</html>import qrcode from 'qrcode-terminal';
 
 (async () => {
   const { state, saveCreds } = await useMultiFileAuthState('.auth_info');
