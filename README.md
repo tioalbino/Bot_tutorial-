@@ -28,7 +28,8 @@ Perfeito para estudos, tutoriais ou testes no **Termux** ou servidores Node.js.
 
 - [Instalação](#-instalação)  
 - [Rodar o Bot](#-rodar-o-bot)  
-- [Conexão Direto no Markdown](#-conexão-direto-no-markdown)  
+- [Estrutura do Projeto](#-estrutura-do-projeto)  
+- [Exemplo de Conexão](#-exemplo-de-conexão-direto-no-readme)  
 - [Dependências](#-dependências-principais)  
 - [Avisos](#-avisos)  
 
@@ -37,7 +38,7 @@ Perfeito para estudos, tutoriais ou testes no **Termux** ou servidores Node.js.
 ## 📦 Instalação
 
 1. Instale **Node.js** (Termux ou servidor Linux/Windows).  
-2. Instale as dependências necessárias:
+2. Abra o terminal e instale as dependências necessárias:
 
 ```bash
 npm install @whiskeysockets/baileys qrcode-terminal
