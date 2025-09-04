@@ -1,28 +1,46 @@
-Perfeito 😎 então vou montar uma versão final, completa e visual do README, pronta para vídeo tutorial, já em Markdown puro.
-Inclui:
+# 🤖 Bot WhatsApp com Baileys
 
-Badges/botões clicáveis para WhatsApp e copiar número
+Este projeto mostra como criar uma **conexão simples com WhatsApp** usando **[@whiskeysockets/baileys](https://www.npmjs.com/package/@whiskeysockets/baileys)** em Node.js.  
 
-Espaço para imagens/GIF
-
-Estrutura limpa para Termux ou Node.js
-
-Exemplo de conexão baseado na documentação oficial do Baileys
-
-Avisos e dependências
-
-
-Segue pronto:
-
+Perfeito para estudos, tutoriais ou testes no **Termux** ou servidores Node.js.
 
 ---
 
-🤖 Bot WhatsApp com Baileys
+## 📲 Contato do Desenvolvedor
 
-Este projeto mostra como criar uma conexão simples com WhatsApp usando @whiskeysockets/baileys em Node.js.
+[![WhatsApp](https://img.shields.io/badge/WhatsApp-💬-25D366?style=for-the-badge&logo=whatsapp)](https://wa.me/5527998158753)  
+**Número:** +55 27 99815-8753  
 
-Perfeito para estudos, tutoriais ou testes no Termux ou servidores Node.js.
+[![Copiar Número](https://img.shields.io/badge/Copiar-Número-0078D7?style=for-the-badge)](#) *(clique no botão direito → copiar)*  
 
+---
+
+## 🖼️ Demonstração / Imagens
+
+> Substitua pelos links reais das suas imagens ou GIFs  
+
+![QR Code de Conexão](https://via.placeholder.com/400x200.png?text=QR+Code)  
+![Exemplo do Bot](https://via.placeholder.com/400x200.png?text=Bot+WhatsApp)  
+
+---
+
+## 📑 Sumário
+
+- [Instalação](#-instalação)  
+- [Rodar o Bot](#-rodar-o-bot)  
+- [Conexão Direto no Markdown](#-conexão-direto-no-markdown)  
+- [Dependências](#-dependências-principais)  
+- [Avisos](#-avisos)  
+
+---
+
+## 📦 Instalação
+
+1. Instale **Node.js** (Termux ou servidor Linux/Windows).  
+2. Instale as dependências necessárias:
+
+```bash
+npm install @whiskeysockets/baileys qrcode-terminal
 
 ---
 
