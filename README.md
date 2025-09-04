@@ -23,7 +23,7 @@
 </section>
 
 <section>
-<h2>🔧 Código Completo (Tudo Junto)</h2>
+<h2>Conexão de Exemplo</h2>
 <pre><code>import makeWASocket, { useMultiFileAuthState } from '@whiskeysockets/baileys';
 import qrcode from 'qrcode-terminal';
 
@@ -66,37 +66,7 @@ connectToWhatsApp();</code></pre>
 </table>
 </section>
 
-<section>
-<h2>▶️ Rodar o Bot</h2>
-<pre><code>node -e "
-import makeWASocket, { useMultiFileAuthState } from '@whiskeysockets/baileys';
-import qrcode from 'qrcode-terminal';
 
-(async () => {
-  const { state, saveCreds } = await useMultiFileAuthState('.auth_info');
-  const sock = makeWASocket({ auth: state });
-
-  sock.ev.on('connection.update', ({ qr, connection }) => {
-    if (qr) qrcode.generate(qr, { small: true });
-    if (connection === 'open') console.log('✅ Bot conectado ao WhatsApp!');
-    if (connection === 'close') console.log('❌ Conexão encerrada, tentando reconectar...');
-  });
-
-  sock.ev.on('creds.update', saveCreds);
-
-  sock.ev.on('messages.upsert', ({ messages, type }) => {
-    if (type === 'notify') {
-      messages.forEach(msg => {
-        if (!msg.key.fromMe) {
-          console.log(`📩 Mensagem recebida de ${msg.key.remoteJid}: ${msg.message?.conversation}`);
-        }
-      });
-    }
-  });
-})();
-"</code></pre>
-<p>Escaneie o QR Code no terminal → Bot conectado ✅</p>
-</section>
 
 <section>
 <h2>📦 Dependências</h2>
